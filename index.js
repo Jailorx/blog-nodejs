@@ -6,6 +6,8 @@ import expressEjsLayouts from "express-ejs-layouts";
 const app = express();
 const PORT = process.env.PORT || 9000;
 
+app.use(express.static("public"));
+
 //Templating Engine
 app.use(expressEjsLayouts);
 app.set("layout", "./layouts/main");
