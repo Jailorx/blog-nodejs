@@ -3,9 +3,13 @@ dotenv.config();
 import express from "express";
 import expressEjsLayouts from "express-ejs-layouts";
 import mainRoutes from "./server/routes/main.js";
+import connectDB from "./server/config/db.js";
 
 const app = express();
 const PORT = process.env.PORT || 9000;
+
+//connect to MongoDB
+connectDB();
 
 app.use(express.static("public"));
 
