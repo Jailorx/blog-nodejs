@@ -1,0 +1,21 @@
+.searchBar {
+  display: none;
+  background-color: black;
+  width: 100%;
+}
+.searchBar_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#searchInput {
+  width: 500px;
+  padding: 0.5rem 0.75rem;
+  margin: 1rem 0;
+  border-radius: 10px;
+  border: none;
+}
+#searchInput:focus {
+  outline: none;
+}

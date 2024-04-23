@@ -16,7 +16,7 @@ a {
   text-decoration: none;
 }
 
-.articleList {
+.article_list {
   list-style-type: none;
   display: flex;
   flex-direction: column;
