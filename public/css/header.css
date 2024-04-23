@@ -1,0 +1,35 @@
+header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  min-width: 100%;
+}
+
+nav ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+nav ul li {
+  font-size: 1.6rem;
+}
+
+nav ul li a {
+  color: black;
+  text-decoration: none;
+}
+nav ul li a:hover {
+  border-bottom: 5px solid black;
+  border-radius: 25%;
+}
+
+.searchBtn {
+  cursor: pointer;
+  border: none;
+  background-color: inherit;
+}
+
+.searchBtn:hover {
+  transform: scale(1.2);
+}
