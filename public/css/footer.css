@@ -1,0 +1,12 @@
+footer {
+  background-color: black;
+  color: beige;
+  min-height: 150px;
+  display: flex;
+  flex-direction: column;
+
+  align-items: start;
+  gap: 20px;
+
+  padding: 20px;
+}
