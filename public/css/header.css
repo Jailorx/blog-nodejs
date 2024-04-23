@@ -20,8 +20,8 @@ nav ul li a {
   text-decoration: none;
 }
 nav ul li a:hover {
-  border-bottom: 5px solid black;
-  border-radius: 25%;
+  color: grey;
+  border-bottom: 5px solid grey;
 }
 
 .searchBtn {
