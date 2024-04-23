@@ -1,17 +1,22 @@
 <section>
     <h2>Latest Posts</h2>
     <ul class="article_list">
-        <li class="article">
-            <a href="#">
-                <span>Title</span>
-                <span id="date">Post Date</span>
-            </a>
-        <li class="article">
-            <a href="#">
-                <span>Title</span>
-                <span id="date">Post Date</span>
-            </a>
-        </li>
+        <% posts.forEach(post=> { %>
+
+            <li class="article">
+                <a href="#">
+                    <span>
+                        <%=post.title %>
+                    </span>
+                    <span id="date">
+                        <%=post.createdAt %>
+                    </span>
+                </a>
+            </li>
+
+            <% }) %>
+
+
     </ul>
 
     <a href="#" class="pagination">&lt; View Older Posts</a>

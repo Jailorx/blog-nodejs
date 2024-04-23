@@ -5,9 +5,9 @@ const router = express.Router();
 //get all posts
 router.get("", async (req, res) => {
   try {
-    const data = await Post.find({});
+    const posts = await Post.find({});
 
-    res.render("index", { data });
+    res.render("index", { posts });
   } catch (error) {
     console.error(error);
   }
