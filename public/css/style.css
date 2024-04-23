@@ -21,12 +21,21 @@ a {
   display: flex;
   flex-direction: column;
 
-  margin: 0 200px 0 200px;
+  margin: 0 150px 0 150px;
 }
 
 .article a {
   display: flex;
   justify-content: space-between;
+}
+#title {
+  font-size: 20px;
+  font-weight: 500;
+}
+#date {
+  max-width: 150px;
+  font-size: 14px;
+  font-color: grey;
 }
 .pagination {
   display: flex;
