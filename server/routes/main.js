@@ -2,31 +2,6 @@ import { Post } from "../models/Post.js";
 import express from "express";
 const router = express.Router();
 
-//get  perPage(default 10) post
-router.get("", async (req, res) => {
-  try {
-    const perPage = 10;
-    let page = req.query.page || 1;
-
-    const posts = await Post.aggregate()
-      .skip(perPage * page - perPage)
-      .limit(perPage)
-      .exec();
-
-    const count = await Post.countDocuments();
-    const nextPage = parseInt(page) + 1;
-    const hasNextPage = nextPage <= Math.ceil(count / perPage);
-
-    res.render("index", {
-      posts,
-      current: page,
-      nextPage: hasNextPage ? nextPage : null,
-    });
-  } catch (error) {
-    console.error(error);
-  }
-});
-
 //sample data
 // const posts = [
 //   {
@@ -90,5 +65,42 @@ router.get("", async (req, res) => {
 //       console.error("Error inserting posts:", err);
 //     });
 // })();
+
+//get  perPage(default 10) post
+router.get("", async (req, res) => {
+  try {
+    const perPage = 10;
+    let page = req.query.page || 1;
+
+    const posts = await Post.aggregate()
+      .skip(perPage * page - perPage)
+      .limit(perPage)
+      .exec();
+
+    const count = await Post.countDocuments();
+    const nextPage = parseInt(page) + 1;
+    const hasNextPage = nextPage <= Math.ceil(count / perPage);
+
+    res.render("index", {
+      posts,
+      current: page,
+      nextPage: hasNextPage ? nextPage : null,
+    });
+  } catch (error) {
+    console.error(error);
+  }
+});
+
+//get post with specific id
+router.get("/post/:id", async (req, res) => {
+  try {
+    const id = req.params.id;
+
+    const post = await Post.findById({ _id: id });
+    res.render("post", { post });
+  } catch (error) {
+    console.log(error);
+  }
+});
 
 export default router;
