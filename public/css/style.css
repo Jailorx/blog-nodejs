@@ -58,3 +58,17 @@ section h2 {
 .pagination:hover {
   color: black;
 }
+
+.logoutBtn {
+  padding: 10px;
+  background-color: black;
+  color: beige;
+  font-weight: 500;
+
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.logoutBtn:hover {
+  transform: scale(1.2);
+}

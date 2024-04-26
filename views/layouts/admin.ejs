@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>shubhams-blog</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/searchBar.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <script defer src="/js/script.js"></script>
+</head>
+
+<body>
+    <div class="container">
+
+        <%- include('../partials/header_admin.ejs') %>
+            <%- include('../partials/searchBar.ejs') %>
+                <main class="main">
+                    <%-body %>
+                </main>
+
+
+                <%- include('../partials/footer.ejs') %>
+    </div>
+
+</body>
+
+</html>
