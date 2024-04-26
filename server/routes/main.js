@@ -92,7 +92,7 @@ router.get("", async (req, res) => {
 });
 
 //get post with specific id
-router.get("/post/:id", async (req, res) => {
+router.get("/pid/:id", async (req, res) => {
   try {
     const id = req.params.id;
 
@@ -103,4 +103,24 @@ router.get("/post/:id", async (req, res) => {
   }
 });
 
+//post the search term
+router.post("/search", async (req, res) => {
+  try {
+    const searchTerm = req.body.searchTerm;
+
+    //clean searchTerm
+    const cleanSearchTerm = searchTerm.replace(/[^a-zA-Z0-9]/g, "");
+
+    const posts = await Post.find({
+      $or: [
+        { title: { $regex: new RegExp(cleanSearchTerm, "i") } },
+        { content: { $regex: new RegExp(cleanSearchTerm, "i") } },
+      ],
+    });
+
+    res.render("search", { posts });
+  } catch (error) {
+    console.log(error);
+  }
+});
 export default router;
