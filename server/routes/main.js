@@ -2,12 +2,26 @@ import { Post } from "../models/Post.js";
 import express from "express";
 const router = express.Router();
 
-//get all posts
+//get  perPage(default 10) post
 router.get("", async (req, res) => {
   try {
-    const posts = await Post.find({});
+    const perPage = 10;
+    let page = req.query.page || 1;
 
-    res.render("index", { posts });
+    const posts = await Post.aggregate()
+      .skip(perPage * page - perPage)
+      .limit(perPage)
+      .exec();
+
+    const count = await Post.countDocuments();
+    const nextPage = parseInt(page) + 1;
+    const hasNextPage = nextPage <= Math.ceil(count / perPage);
+
+    res.render("index", {
+      posts,
+      current: page,
+      nextPage: hasNextPage ? nextPage : null,
+    });
   } catch (error) {
     console.error(error);
   }
