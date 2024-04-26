@@ -1,0 +1,21 @@
+<section>
+    <h2>Search Results</h1>
+        <ul class="article_list">
+            <% posts.forEach(post=> { %>
+
+                <li class="article">
+                    <a href="pid/<%=post._id %>">
+                        <span id="title">
+                            <%=post.title %>
+                        </span>
+                        <span id="date">
+                            <%=post.createdAt.toDateString() %>
+                        </span>
+                    </a>
+                </li>
+
+                <% }) %>
+
+
+        </ul>
+</section>
