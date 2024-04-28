@@ -137,3 +137,7 @@ textarea {
   background-color: red;
   border: none;
 }
+
+#logout {
+  color: beige;
+}
