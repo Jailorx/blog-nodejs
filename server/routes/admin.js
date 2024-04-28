@@ -6,11 +6,34 @@ import { User } from "../models/User.js";
 
 const router = express.Router();
 
+const jwtSecret = process.env.JWT_SECRET;
 const adminLayout = `../views/layouts/admin`;
 
 router.get("/signin", async (req, res) => {
   try {
     res.render("admin/signin", { layout: adminLayout });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+router.post("/admin", async (req, res) => {
+  try {
+    const { username, password } = req.body;
+
+    const user = await User.findOne({ username });
+    if (!user) {
+      return res.status(401).json({ message: "Invalid credentials" });
+    }
+
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+
+    if (!isPasswordValid) {
+      return res.status(401).json({ message: "Invalid credentials" });
+    }
+
+    const token = jwt.sign({ userId: user._id }, jwtSecret);
+    res.cookie("token", token, { httpOnly: true });
   } catch (error) {
     console.log(error);
   }
@@ -35,15 +58,6 @@ router.post("/register", async (req, res) => {
     } catch (error) {
       res.status(500).json({ message: "Internal server error" });
     }
-  } catch (error) {
-    console.log(error);
-  }
-});
-
-router.post("/admin", async (req, res) => {
-  try {
-    // console.log(req.body);
-    const { username, password } = req.body;
   } catch (error) {
     console.log(error);
   }
