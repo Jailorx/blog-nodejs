@@ -105,3 +105,22 @@ input[type="submit"] {
   font-weight: 600;
   color: blue;
 }
+.subcontainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.admin_article {
+  margin: 10px 0;
+  border-bottom: 1px solid lightgrey;
+  display: flex;
+  justify-content: space-between;
+}
+.controls_Btn {
+  border: black;
+  font-size: 1.1rem;
+  font-weight: 600;
+  background-color: transparent;
+  color: beige;
+  cursor: pointer;
+}

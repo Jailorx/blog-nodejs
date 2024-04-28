@@ -1,1 +1,25 @@
 <h1>Welcome to dashboard</h1>
+<div class="subcontainer">
+    <h2>Posts</h2>
+    <a href="">+ New Post</a>
+</div>
+
+<ul class="article_list">
+    <% posts.forEach(post=> { %>
+
+        <li class="admin_article">
+            <a href="pid/<%=post._id %>">
+                <span id="title">
+                    <%=post.title %> &nearr;
+                </span>
+            </a>
+            <div class="controls">
+                <button class="controls_Btn"><a target="_blank" href="/edit/<%= post._id %>">Edit</a></button>
+                <a href="">Delete</a>
+            </div>
+        </li>
+
+        <% }) %>
+
+
+</ul>

@@ -8,6 +8,21 @@ const router = express.Router();
 
 const adminLayout = `../views/layouts/admin`;
 
+const authMiddleware = (req, res, next) => {
+  const token = req.cookies.token;
+
+  if (!token) {
+    res.redirect("/signin");
+  }
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    req.userId = decoded.userId;
+    next();
+  } catch (error) {
+    res.status(401).json({ message: "Unauthorized" });
+  }
+};
+
 router.get("/signin", async (req, res) => {
   try {
     console.log("jwtsecret:", process.env.JWT_SECRET);
@@ -65,9 +80,13 @@ router.post("/register", async (req, res) => {
   }
 });
 
-router.get("/dashboard", async (req, res) => {
+router.get("/dashboard", authMiddleware, async (req, res) => {
   try {
-    res.render("admin/dashboard", { layout: adminLayout });
+    const posts = await Post.find();
+    res.render("admin/dashboard", {
+      posts,
+      layout: adminLayout,
+    });
   } catch (error) {
     console.error(error);
   }
