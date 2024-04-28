@@ -130,3 +130,8 @@ textarea {
   color: beige;
   cursor: pointer;
 }
+
+#delete {
+  background-color: red;
+  border: none;
+}

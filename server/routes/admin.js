@@ -115,4 +115,25 @@ router.post("/new-post", authMiddleware, async (req, res) => {
   }
 });
 
+router.get("/edit-post/:id", authMiddleware, async (req, res) => {
+  try {
+    const post = await Post.findOne({ _id: req.params.id });
+    res.render("admin/edit-post", { post, layout: adminLayout });
+  } catch (error) {}
+});
+
+router.put("/edit-post/:id", authMiddleware, async (req, res) => {
+  try {
+    await Post.findByIdAndUpdate(req.params.id, {
+      title: req.body.title,
+      body: req.body.body,
+      updatedAt: Date.now(),
+    });
+
+    res.redirect(`/edit-post/${req.params.id}`);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 export default router;
