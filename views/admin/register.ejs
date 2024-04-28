@@ -1,13 +1,14 @@
 <div class="signInContainer">
-    <h2>Admin Sign in</h2>
+    <h2>Register</h2>
 
-    <form action="/admin" method="POST">
+    <form action="/admin/register" method="POST">
         <label for="username">Username :</label>
         <input type="text" placeholder="Enter username" name="username">
 
         <label for="password">Password : </label>
         <input type="password" placeholder="Enter password" name="password">
 
-        <input id="loginBtn" type="submit" value="Login">
+        <input class="adminBtn" type="submit" value="Signup">
     </form>
+    <p>Already have an account? <a class="link" href="/admin">Login here</a></p>
 </div>

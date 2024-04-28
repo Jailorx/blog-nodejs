@@ -93,11 +93,15 @@ input[type="submit"] {
   border-radius: 10px;
 }
 
-#loginBtn {
+.adminBtn {
   border: none;
   font-size: 1.1rem;
   font-weight: 600;
   background-color: black;
   color: beige;
   cursor: pointer;
+}
+.link {
+  font-weight: 600;
+  color: blue;
 }
