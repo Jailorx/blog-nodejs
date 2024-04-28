@@ -1,6 +1,7 @@
 .searchBar {
   display: none;
   background-color: black;
+  height: 70px;
   width: 100%;
 }
 .searchBar_container {
