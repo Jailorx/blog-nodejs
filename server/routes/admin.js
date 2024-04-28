@@ -6,18 +6,18 @@ import { User } from "../models/User.js";
 
 const router = express.Router();
 
-const jwtSecret = process.env.JWT_SECRET;
 const adminLayout = `../views/layouts/admin`;
 
 router.get("/signin", async (req, res) => {
   try {
+    console.log("jwtsecret:", process.env.JWT_SECRET);
     res.render("admin/signin", { layout: adminLayout });
   } catch (error) {
     console.log(error);
   }
 });
 
-router.post("/admin", async (req, res) => {
+router.post("/signin", async (req, res) => {
   try {
     const { username, password } = req.body;
 
@@ -32,8 +32,10 @@ router.post("/admin", async (req, res) => {
       return res.status(401).json({ message: "Invalid credentials" });
     }
 
-    const token = jwt.sign({ userId: user._id }, jwtSecret);
+    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET);
     res.cookie("token", token, { httpOnly: true });
+
+    res.redirect("/dashboard");
   } catch (error) {
     console.log(error);
   }
@@ -60,6 +62,14 @@ router.post("/register", async (req, res) => {
     }
   } catch (error) {
     console.log(error);
+  }
+});
+
+router.get("/dashboard", async (req, res) => {
+  try {
+    res.render("admin/dashboard", { layout: adminLayout });
+  } catch (error) {
+    console.error(error);
   }
 });
 
