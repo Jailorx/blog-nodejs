@@ -92,4 +92,27 @@ router.get("/dashboard", authMiddleware, async (req, res) => {
   }
 });
 
+router.get("/new-post", authMiddleware, async (req, res) => {
+  try {
+    res.render("admin/new-post", { layout: adminLayout });
+  } catch (error) {}
+});
+
+router.post("/new-post", authMiddleware, async (req, res) => {
+  try {
+    const { title, content } = req.body;
+
+    try {
+      const newPost = new Post({ title, content });
+
+      await Post.create(newPost);
+      res.redirect("/dashboard");
+    } catch (error) {
+      console.error(error);
+    }
+  } catch (error) {
+    console.error(error);
+  }
+});
+
 export default router;
