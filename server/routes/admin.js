@@ -143,4 +143,9 @@ router.delete("/delete-post/:id", authMiddleware, async (req, res) => {
   } catch (error) {}
 });
 
+router.get("/logout", (req, res) => {
+  res.clearCookie("token");
+  res.redirect("/");
+});
+
 export default router;
