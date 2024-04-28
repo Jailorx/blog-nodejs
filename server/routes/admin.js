@@ -24,15 +24,26 @@ router.get("/register", async (req, res) => {
   }
 });
 
+router.post("/register", async (req, res) => {
+  try {
+    const { username, password } = req.body;
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    try {
+      const user = await User.create({ username, password: hashedPassword });
+      res.status(201).json({ message: "user created", user });
+    } catch (error) {
+      res.status(500).json({ message: "Internal server error" });
+    }
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 router.post("/admin", async (req, res) => {
   try {
     // console.log(req.body);
     const { username, password } = req.body;
-    if (username === "admin" && password === "password")
-      res.send("you are logged in");
-    else {
-      res.send("wrong password or username");
-    }
   } catch (error) {
     console.log(error);
   }
