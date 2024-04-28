@@ -56,7 +56,7 @@ router.post("/register", async (req, res) => {
 
     try {
       const user = await User.create({ username, password: hashedPassword });
-      res.status(201).json({ message: "user created", user });
+      res.status(201).redirect("/signin");
     } catch (error) {
       res.status(500).json({ message: "Internal server error" });
     }
